@@ -1,5 +1,4 @@
 import MediaService from "../services/media.service.js";
-import { Request, Response } from "express";
 class MediaController {
   static async uploadMedia(req, res) {
     const files = req.files;
@@ -30,11 +29,9 @@ class MediaController {
       res.status(200).send({ message: "File deleted successfully." });
     } catch (error) {
       console.error("Error deleting file:", error);
-      res
-        .status(500)
-        .send({
-          error: `An error occurred while deleting the file.  ${error}`,
-        });
+      res.status(500).send({
+        error: `An error occurred while deleting the file.  ${error}`,
+      });
     }
   }
 }

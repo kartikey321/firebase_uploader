@@ -3,7 +3,7 @@ import { createServer } from "node:http";
 
 import { Server } from "socket.io";
 import cors from "cors";
-import firebaseAdmin from "./config/firebase.js";
+import  firebaseAdmin  from "./config/firebase.js";
 import mediaRoutes from "./route/media.route.js";
 
 const app = express();
