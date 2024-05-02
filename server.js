@@ -55,7 +55,3 @@ io.on("connection", function (socket) {
 httpServer.listen(NEWPORT, () =>
   console.log(`Server is running on port ${NEWPORT}`)
 );
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
