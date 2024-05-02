@@ -3,7 +3,7 @@ import { createServer } from "node:http";
 
 import { Server } from "socket.io";
 import cors from "cors";
-import  firebaseAdmin  from "./config/firebase.js";
+import firebaseAdmin from "./config/firebase.js";
 import mediaRoutes from "./route/media.route.js";
 
 const app = express();
@@ -19,7 +19,7 @@ const io = new Server(httpServer, {
 
 app.use(cors());
 const PORT = process.env.PORT || 3000;
-
+const NEWPORT = process.env.PORT || 4000;
 app.use("/api/v1", mediaRoutes);
 io.on("connect_error", (err) => {
   console.log(`connect_error due to ${err.message}`);
@@ -52,7 +52,9 @@ io.on("connection", function (socket) {
     });
   });
 });
-httpServer.listen(4000);
+httpServer.listen(NEWPORT, () =>
+  console.log(`Server is running on port ${NEWPORT}`)
+);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
