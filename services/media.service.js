@@ -1,9 +1,9 @@
 import firebaseAdmin from "../config/firebase.js";
 
 class MediaService {
-  static async uploadMedia(files: any[], directoryPath: string) {
+  static async uploadMedia(files, directoryPath) {
     const bucket = firebaseAdmin.storage().bucket();
-    const urls: string[] = [];
+    const urls = [];
 
     for (const file of files) {
       const blob = bucket.file(`${directoryPath}/${file.originalname}`);
@@ -45,7 +45,7 @@ class MediaService {
 
     return urls;
   }
-  static async delete(filePath: string) {
+  static async delete(filePath) {
     var bucket = firebaseAdmin.storage().bucket();
     var file = bucket.file(filePath);
 

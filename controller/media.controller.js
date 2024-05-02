@@ -1,7 +1,7 @@
 import MediaService from "../services/media.service.js";
 import { Request, Response } from "express";
 class MediaController {
-  static async uploadMedia(req: any, res: any) {
+  static async uploadMedia(req, res) {
     const files = req.files;
     const directoryPath = req.body.directory; // Extract directory path from the request body
     console.log(req.files);
@@ -16,11 +16,11 @@ class MediaController {
       res
         .status(200)
         .send({ message: "Files uploaded successfully.", media: mediaArray });
-    } catch (err: any) {
+    } catch (err) {
       res.status(500).send({ error: err.message });
     }
   }
-  static async delete(req: any, res: any) {
+  static async delete(req, res) {
     var filePath = req.body.filePath;
 
     try {
@@ -28,7 +28,7 @@ class MediaController {
       await MediaService.delete(filePath);
 
       res.status(200).send({ message: "File deleted successfully." });
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error deleting file:", error);
       res
         .status(500)
