@@ -29,7 +29,7 @@ io.on("error", (error) => {
 });
 io.on("connection", function (socket) {
   console.log("connected");
-  socket.on("getStreamOfColl", function ({ docPath, limit, filters }) {
+  socket.on("getStreamOfColl", function ({ docPath, limit, filters,id }) {
     console.log(docPath, "limit", "");
     let query = db.collection(docPath);
 
@@ -48,7 +48,7 @@ io.on("connection", function (socket) {
         console.log("res: ", val.data());
         return val.data();
       });
-      io.emit("collection", res);
+      io.emit("collection_"+id, res);
     });
   });
 });
