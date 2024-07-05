@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package firestoreservice;
+
+service FirestoreService {
+  rpc StreamCollection (StreamRequest) returns (stream DocumentResponse) {}
+}
+
+message StreamRequest {
+  string collection_path = 1;
+  string filters = 2;  // JSON string of DataFilter list
+  int32 limit = 3;
+}
+
+message DocumentResponse {
+  string collection_snapshot = 1;
+}
