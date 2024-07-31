@@ -3,9 +3,9 @@ import MediaController from "../controller/media.controller.js";
 import uploadMiddleware from "../middleware/media.middleare.js";
 
 const router = express.Router();
-
+console.log("processing request 1");
 router.post("/upload", uploadMiddleware, MediaController.uploadMedia);
 router.post("/delete", MediaController.delete);
-router.post("/move",MediaController.moveFile)
+router.post("/move", MediaController.moveFile);
 
 export default router;

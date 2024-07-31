@@ -1,10 +1,11 @@
 import MediaService from "../services/media.service.js";
 class MediaController {
   static async uploadMedia(req, res) {
+    console.log("processing request 2");
     const files = req.files;
     const directoryPaths = req.body.directory; // Extract directory path from the request body
     const qualities = req.body.qualities;
-   
+
     if (!files) {
       return res.status(400).send({ error: "No files uploaded." });
     }
