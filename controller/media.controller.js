@@ -3,6 +3,7 @@ class MediaController {
   static async uploadMedia(req, res) {
     console.log("processing request 2");
     const files = req.files;
+  
     const directoryPaths = req.body.directory; // Extract directory path from the request body
     const qualities = req.body.qualities;
 
@@ -21,6 +22,7 @@ class MediaController {
         .status(200)
         .send({ message: "Files uploaded successfully.", media: mediaArray });
     } catch (err) {
+      console.log(err);
       res.status(500).send({ error: err.message });
     }
   }

@@ -2,8 +2,14 @@ import firebaseAdmin from "../config/firebase.js";
 import sharp from "sharp";
 class MediaService {
   static async uploadMedia(files, directoryPaths, qualities = []) {
+    if (!Array.isArray(directoryPaths)) {
+      directoryPaths = [directoryPaths];
+  }
+    console.log("directory type: "+ typeof(directoryPaths));
+    console.log('directory paths0: '+directoryPaths[0]);
     const bucket = firebaseAdmin.storage().bucket();
     const urls = [];
+    console.log(directoryPaths);
 
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
@@ -16,7 +22,9 @@ class MediaService {
         isImage && quality < 100
           ? `${file.originalname.split(".")[0]}.png`
           : file.originalname;
-
+      
+          
+          console.log(`${directoryPath}/${newFileName}`);
       const blob = bucket.file(`${directoryPath}/${newFileName}`);
       console.log(`path:  ${directoryPath}/${newFileName}`);
       const blobStream = blob.createWriteStream({
